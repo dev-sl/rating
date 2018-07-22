@@ -5,10 +5,10 @@ services:
         image: nginx:latest
         container_name: nginx
         ports:
-            - "80:80"
-            - "443:443"
+            - 80:80
+            - 443:443
         volumes:
-            - ./nginx/conf.d/:/etc/nginx/conf.d
+            - ./nginx/conf.d:/etc/nginx/conf.d/
             - ../code:/var/www/rating/
             - ./nginx/logs:/var/log/nginx/
         links:
