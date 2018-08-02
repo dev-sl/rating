@@ -13,9 +13,16 @@ services:
             - ./nginx/logs:/var/log/nginx/
         links:
             - php
+            - mysql
 
     php:
         build: ./php
         container_name: php-fpm
         volumes:
             - ../code:/var/www/rating/
+
+    mysql:
+        image: mysql:latest
+        container_name: mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
