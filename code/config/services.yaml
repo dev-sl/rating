@@ -28,3 +28,16 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer:
+        tags: [serializer.normalizer]
+
+    app.repository.chronicle:
+        class: Doctrine\ORM\EntityRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - App\Entity\Chronicle
+
+    App\Controller\ChronicleController:
+        arguments:
+            $chronicleRepository: '@app.repository.chronicle'

@@ -1,0 +1,4 @@
+chronicle:
+    type: rest
+    prefix: /api/v1
+    resource: App\Controller\ChronicleController

@@ -20,15 +20,21 @@ services:
         container_name: php-fpm
         volumes:
             - ./code:/var/www/rating/
+        depends_on:
+            - mysql
 
     mysql:
         image: mysql:latest
         ports:
             - 3306:3306
         volumes:
-            - ./docker/data:/var/lib/mysql
+            - mysql_data:/var/lib/mysql
         container_name: mysql
         environment:
+            MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: rating
             MYSQL_USER: user
             MYSQL_PASSWORD: pass
+
+volumes:
+  mysql_data:
