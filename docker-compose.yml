@@ -15,6 +15,12 @@ services:
             - php
             - mysql
 
+    node:
+        build: docker/node
+        container_name: node
+        volumes:
+            - ./code:/var/www/rating/
+
     php:
         build: docker/php
         container_name: php-fpm
