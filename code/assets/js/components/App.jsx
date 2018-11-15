@@ -1,10 +1,11 @@
 import React from 'react'
+import Preloader from "./Preloader";
 
 export default class App extends React.Component
 {
     render() {
         return (
-            <h1>Hello this is home page</h1>
+            <Preloader/>
         );
     }
 }
