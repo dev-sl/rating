@@ -1,0 +1,46 @@
+version: '3.3'
+
+services:
+    nginx:
+        image: nginx:latest
+        container_name: nginx
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - ./docker/nginx/conf.d:/etc/nginx/conf.d/
+            - ./docker/nginx/logs:/var/log/nginx/
+            - ./code:/var/www/rating/
+        links:
+            - php
+            - mysql
+
+    node:
+        build: docker/node
+        container_name: node
+        volumes:
+            - ./code:/var/www/rating/
+
+    php:
+        build: docker/php
+        container_name: php-fpm
+        volumes:
+            - ./code:/var/www/rating/
+        depends_on:
+            - mysql
+
+    mysql:
+        image: mysql:latest
+        ports:
+            - 3306:3306
+        volumes:
+            - mysql_data:/var/lib/mysql
+        container_name: mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: rating
+            MYSQL_USER: user
+            MYSQL_PASSWORD: pass
+
+volumes:
+  mysql_data:

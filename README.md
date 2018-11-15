@@ -1,0 +1,1 @@
+Get migrations for create scheme: `php bin/console doctrine:migration:migrate`
