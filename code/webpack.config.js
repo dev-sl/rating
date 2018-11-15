@@ -50,6 +50,7 @@ Encore
 
 Encore
     .enableReactPreset()
+    .enableSassLoader()
 ;
 
 module.exports = Encore.getWebpackConfig();
