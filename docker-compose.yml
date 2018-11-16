@@ -10,7 +10,7 @@ services:
         volumes:
             - ./docker/nginx/conf.d:/etc/nginx/conf.d/
             - ./docker/nginx/logs:/var/log/nginx/
-            - ./code:/var/www/rating/
+            - ./code:/var/www
         links:
             - php
             - mysql
@@ -19,13 +19,15 @@ services:
         build: docker/node
         container_name: node
         volumes:
-            - ./code:/var/www/rating/
+            - ./code:/var/www
+        depends_on:
+            - php
 
     php:
         build: docker/php
         container_name: php-fpm
         volumes:
-            - ./code:/var/www/rating/
+            - ./code:/var/www
         depends_on:
             - mysql
 
