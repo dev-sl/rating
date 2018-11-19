@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
     zip \
     unzip \
-    git
+    git \
+    netcat
 
 RUN docker-php-ext-install \
     pdo_mysql
