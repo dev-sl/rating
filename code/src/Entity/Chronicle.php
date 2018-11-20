@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity()
@@ -20,6 +21,7 @@ class Chronicle
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
+     * @Groups({"chronicle"})
      */
     private $name;
 

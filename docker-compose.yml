@@ -5,8 +5,7 @@ services:
         image: nginx:latest
         container_name: nginx
         ports:
-            - 80:80
-            - 443:443
+            - 80
         volumes:
             - ./docker/nginx/conf.d:/etc/nginx/conf.d/
             - ./docker/nginx/logs:/var/log/nginx/
@@ -32,10 +31,12 @@ services:
             - mysql
 
     mysql:
-        image: mysql:latest
-        command: --default-authentication-plugin=mysql_native_password
+        image: mariadb:latest
+        user: "1000:50"
+        command: --innodb-flush-method=O_DSYNC --innodb-use-native-aio=0 --log_bin=ON
         volumes:
-            - ./docker/data:/var/lib/mysql
+            - ./docker/mysql/data:/var/lib/mysql
+            - ./mysql.cnf:/etc/mysql/conf.d/mysql.cnf
         container_name: mysql
         environment:
             MYSQL_DATABASE: rating
