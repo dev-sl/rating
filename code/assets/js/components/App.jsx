@@ -1,6 +1,7 @@
 import React from 'react'
 import Preloader from "./Preloader";
-import Chronicles from "./Chronicles";
+import Header from "./Header";
+import Main from "./Main";
 
 export default class App extends React.Component
 {
@@ -25,19 +26,21 @@ export default class App extends React.Component
                         })
                     }
                 );
-        }, 2000);
-
+        }, 200);
     }
 
     render() {
-        if (!this.state.preloaderEnbled && this.state.chronicles !== null) {
+        if (this.state.preloaderEnbled) {
             return (
-                <Chronicles chronicles={this.state.chronicles}/>
-            )
+                <Preloader/>
+            );
         }
 
         return (
-            <Preloader/>
+            <div>
+                <Header/>
+                <Main chronicles={this.state.chronicles}/>
+            </div>
         );
     }
 }
