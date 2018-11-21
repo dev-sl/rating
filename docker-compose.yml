@@ -36,7 +36,7 @@ services:
         command: --innodb-flush-method=O_DSYNC --innodb-use-native-aio=0 --log_bin=ON
         volumes:
             - ./docker/mysql/data:/var/lib/mysql
-            - ./docker/mysql/confi/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+            - ./docker/mysql/config/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
         container_name: mysql
         environment:
             MYSQL_DATABASE: rating

@@ -4,14 +4,13 @@ namespace App\Controller;
 
 use Doctrine\ORM\EntityRepository;
 use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Routing\ClassResourceInterface;
 use FOS\RestBundle\View\View;
 
 /**
  * Class ChronicleController
  * @package App\Controller
  */
-class ChronicleController extends FOSRestController implements ClassResourceInterface
+class ChronicleController extends FOSRestController
 {
     /**
      * @var EntityRepository
@@ -30,7 +29,7 @@ class ChronicleController extends FOSRestController implements ClassResourceInte
     /**
      * @return View
      */
-    public function cgetAction(): View
+    public function getChroniclesAction(): View
     {
         return $this->view($this->chronicleRepository->findAll());
     }
