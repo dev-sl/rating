@@ -5,6 +5,10 @@ namespace DoctrineMigrations;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
+/**
+ * Class Version20181112211311
+ * @package DoctrineMigrations
+ */
 final class Version20181112211311 extends AbstractMigration
 {
     /**
@@ -13,7 +17,7 @@ final class Version20181112211311 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         $this->addSql('
-            CREATE TABLE chronicle
+            CREATE TABLE IF NOT EXISTS chronicle
             (
                 id INT PRIMARY KEY AUTO_INCREMENT,
                 name VARCHAR(255) NOT NULL

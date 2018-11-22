@@ -53,6 +53,10 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "build": [
+            "cp .env.dist .env",
+            "php bin/console doctrine:migrations:migrate -n"
         ]
     },
     "conflict": {

@@ -1,7 +1,7 @@
 FROM node:latest
 
-WORKDIR /var/www/rating
+WORKDIR /var/www
 
-COPY . /var/www/rating
-
-ENTRYPOINT yarn install && yarn encore dev --watch
+COPY entrypoint.sh /
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]

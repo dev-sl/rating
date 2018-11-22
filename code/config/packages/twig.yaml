@@ -1,3 +1,7 @@
+framework:
+    templating:
+        engines: twig
+
 twig:
     paths: ['%kernel.project_dir%/templates']
     debug: '%kernel.debug%'

@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Class Chronicle
+ * @package App\Entity
  * @ORM\Entity()
  */
 class Chronicle

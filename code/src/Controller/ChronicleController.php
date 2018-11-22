@@ -3,13 +3,14 @@
 namespace App\Controller;
 
 use Doctrine\ORM\EntityRepository;
-use FOS\RestBundle\Routing\ClassResourceInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\SerializerInterface;
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\View\View;
 
-class ChronicleController extends Controller implements ClassResourceInterface
+/**
+ * Class ChronicleController
+ * @package App\Controller
+ */
+class ChronicleController extends FOSRestController
 {
     /**
      * @var EntityRepository
@@ -17,24 +18,19 @@ class ChronicleController extends Controller implements ClassResourceInterface
     private $chronicleRepository;
 
     /**
-     * @var SerializerInterface
-     */
-    private $serializer;
-
-    /**
+     * ChronicleController constructor.
      * @param EntityRepository $chronicleRepository
      */
-    public function __construct(EntityRepository $chronicleRepository, SerializerInterface $serializer)
+    public function __construct(EntityRepository $chronicleRepository)
     {
         $this->chronicleRepository = $chronicleRepository;
-        $this->serializer          = $serializer;
     }
 
     /**
-     * @return Response
+     * @return View
      */
-    public function cgetAction(): Response
+    public function getChroniclesAction(): View
     {
-        return new Response($this->serializer->serialize($this->chronicleRepository->findAll(), JsonEncoder::FORMAT));
+        return $this->view($this->chronicleRepository->findAll());
     }
 }

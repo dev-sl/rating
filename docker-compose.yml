@@ -5,12 +5,11 @@ services:
         image: nginx:latest
         container_name: nginx
         ports:
-            - 80:80
-            - 443:443
+            - 80
         volumes:
             - ./docker/nginx/conf.d:/etc/nginx/conf.d/
             - ./docker/nginx/logs:/var/log/nginx/
-            - ./code:/var/www/rating/
+            - ./code:/var/www
         links:
             - php
             - mysql
@@ -19,28 +18,26 @@ services:
         build: docker/node
         container_name: node
         volumes:
-            - ./code:/var/www/rating/
+            - ./code:/var/www
+        depends_on:
+            - php
 
     php:
         build: docker/php
         container_name: php-fpm
         volumes:
-            - ./code:/var/www/rating/
+            - ./code:/var/www
         depends_on:
             - mysql
 
     mysql:
-        image: mysql:latest
-        ports:
-            - 3306:3306
+        image: mariadb:latest
+        user: "1000:50"
+        command: --innodb-flush-method=O_DSYNC --innodb-use-native-aio=0 --log_bin=ON
         volumes:
-            - mysql_data:/var/lib/mysql
+            - ./docker/mysql/data:/var/lib/mysql
+            - ./docker/mysql/config/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
         container_name: mysql
         environment:
-            MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: rating
-            MYSQL_USER: user
-            MYSQL_PASSWORD: pass
-
-volumes:
-  mysql_data:
+            MYSQL_ROOT_PASSWORD: root
