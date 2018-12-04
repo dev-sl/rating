@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 export default class Chronicles extends React.Component
 {
@@ -18,3 +19,10 @@ export default class Chronicles extends React.Component
         )
     }
 }
+
+Chronicles.propTypes = {
+    chronicles: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired
+    })).isRequired
+};
