@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import logo from '../../img/logo.svg';
 
 export default class Header extends React.Component
 {
@@ -26,13 +27,20 @@ export default class Header extends React.Component
 
     render() {
         return (
-            <nav className="header">
-                {this.structure.map(item =>
-                    <div key={item.id} className="header__item">
-                        <a href={item.href} className="header__link">{item.title}</a>
+            <div className="container">
+                <header className="header">
+                    <div className="header__logo">
+                        <img src={logo} alt="Rating logo"/>
                     </div>
-                )}
-            </nav>
+                    <nav className="header__nav">
+                        {this.structure.map(item =>
+                            <div key={item.id} className="header__item">
+                                <a href={item.href} className="header__link">{item.title}</a>
+                            </div>
+                        )}
+                    </nav>
+                </header>
+            </div>
         )
     }
 }

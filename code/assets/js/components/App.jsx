@@ -35,7 +35,7 @@ export default class App extends React.Component
         }
 
         return (
-            <div>
+            <div className="page">
                 <Header/>
                 <Main chronicles={this.state.chronicles}/>
             </div>
