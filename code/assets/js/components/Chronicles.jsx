@@ -9,11 +9,7 @@ export default class Chronicles extends React.Component
         return (
             <ul>
                 {chronicles.map(
-                    chronicle => {
-                        return (
-                            <li key={chronicle.id}>{chronicle.name}</li>
-                        )
-                    }
+                    chronicle => <li key={chronicle.id}>{chronicle.name}</li>
                 )}
             </ul>
         )

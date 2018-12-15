@@ -10,23 +10,21 @@ export default class App extends React.Component
 
         this.state = {
             preloaderEnbled: true,
-            chronicles: null,
+            chronicles: null
         };
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            fetch('/api/v1/chronicles')
-                .then(response => response.json())
-                .then(
-                    data => {
-                        this.setState({
-                            preloaderEnbled: false,
-                            chronicles: data,
-                        })
-                    }
-                );
-        }, 200);
+        fetch('/api/v1/chronicles')
+            .then(response => response.json())
+            .then(
+                data => {
+                    this.setState({
+                        preloaderEnbled: false,
+                        chronicles: data,
+                    })
+                }
+            );
     }
 
     render() {
@@ -37,7 +35,7 @@ export default class App extends React.Component
         }
 
         return (
-            <div>
+            <div className="page">
                 <Header/>
                 <Main chronicles={this.state.chronicles}/>
             </div>

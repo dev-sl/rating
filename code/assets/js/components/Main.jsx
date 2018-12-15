@@ -7,8 +7,7 @@ export default class Main extends React.Component
         const { chronicles } = this.props;
 
         return (
-            <main role="main" className="container">
-
+            <main role="main">
                 <div className="starter-template">
                     <h1>Chronicles</h1>
                     <Chronicles chronicles={chronicles}/>
